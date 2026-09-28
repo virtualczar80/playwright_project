@@ -1,6 +1,5 @@
 import pytest
 
-
 INVALID_LOGIN_CASES = [
     pytest.param(
         "locked_out_user",
