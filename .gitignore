@@ -49,3 +49,24 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+# Virtual environment
+.venv/
+
+# Python and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Generated reports, screenshots, and traces
+reports/
+test-results/
+*.log
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Saved browser authentication state
+playwright/.auth/
