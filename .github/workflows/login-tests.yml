@@ -1,0 +1,49 @@
+name: Login tests
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  login-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Download repository code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Install Python packages
+        run: python -m pip install -r requirements.txt
+
+      - name: Install Chromium browser
+        run: python -m playwright install --with-deps chromium
+
+      - name: Check code quality
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+
+      - name: Run login tests
+        env:
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+        run: python -m pytest tests/test_login.py -n 2 -v
+
+      - name: Save reports and failure evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: login-test-results
+          path: |
+            reports/
+            test-results/
+          retention-days: 7
