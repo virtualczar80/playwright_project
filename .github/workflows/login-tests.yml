@@ -36,7 +36,7 @@ jobs:
         env:
           TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-        run: python -m pytest tests/test_login.py -n 2 -v
+        run: python -m pytest tests/ -n 2 -v
 
       - name: Save reports and failure evidence
         if: ${{ !cancelled() }}
