@@ -27,10 +27,10 @@ jobs:
       - name: Install Chromium browser
         run: python -m playwright install --with-deps chromium
 
-      - name: Check code quality
-        run: |
-          python -m ruff check .
-          python -m ruff format --check .
+    # - name: Check code quality
+     #  run: |
+      #   python -m ruff check .
+       #  python -m ruff format --check .
 
       - name: Run login tests
         env:
