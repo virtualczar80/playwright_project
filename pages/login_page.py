@@ -9,6 +9,7 @@ class LoginPage:
         self.password_input = page.get_by_placeholder("Password",exact=True,)
         self.login_button = page.get_by_role("button",name="Login",exact=True,)
         self.error_message = page.locator('[data-test="error"]')
+      
 
     def open(self) -> None:
         self.page.goto("/")
